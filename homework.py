@@ -139,12 +139,13 @@ def check_tokens():
 
 
 class WrongAPIRequest(ValueError):
-    """Exception for problums with API"""
+    """Exception for problums with API."""
+
     pass
 
 
 def main():
-    """Main instruction"""
+    """Main instruction."""
     logger = logging.getLogger(__name__)
     handler = logging.StreamHandler(stream=sys.stdout)
     logger.setLevel(logging.DEBUG)
