@@ -7,7 +7,6 @@ import logging
 from telegram import Bot
 from telegram.error import TelegramError
 from dotenv import load_dotenv
-from pprint import pprint
 
 
 load_dotenv()
@@ -47,7 +46,8 @@ EXPECTED_SUCCESS_KEYS = ['current_date', 'homeworks']
 
 def send_message(bot: Bot, message: str):
     """Function to send messages via bot.
-    Doesn't check success of delivery"""
+    Doesn't check success of delivery
+    """
     bot.send_message(
         chat_id=TELEGRAM_CHAT_ID,
         text=message
@@ -61,8 +61,9 @@ def get_api_answer(current_timestamp: int):
     included in response.
     Global parameters needed:
     ENPOINT is url for request,
-    HEADERS is dict of headers of request (at least Authorization header required)"""
-
+    HEADERS is dict of headers of request
+    (at least Authorization header required)
+    """
     timestamp = current_timestamp or int(time.time())
     params = {'from_date': timestamp}
     res = requests.get(ENDPOINT, headers=HEADERS, params=params)
@@ -91,8 +92,8 @@ def check_response(response: dict):
     and returns list of all homeworks in case of success
     (even if this list is empty). Structure of expected response is
     {'current_timestamp':int, 'homeworks':[dict]}.
-    Exceptions are raised if structure doesn't suit the expected."""
-
+    Exceptions are raised if structure doesn't suit the expected.
+    """
     try:
         homeworks = response[EXPECTED_SUCCESS_KEYS[1]]
 
@@ -114,7 +115,8 @@ def parse_status(homework: dict):
     and creates string to be sent to user.
     Status and name are expected to be found in dictionary
     'homework' by keys 'status' and 'homework_name'.
-    If thess keys are not in dictionary exception is raised."""
+    If thess keys are not in dictionary exception is raised.
+    """
     try:
         homework_name = homework["homework_name"]
         homework_status = homework["status"]
@@ -136,11 +138,12 @@ def check_tokens():
 
 
 class WrongAPIRequest(ValueError):
+    """Exception for problums with API"""
     pass
 
 
 def main():
-
+    """Main instruction"""
     logger = logging.getLogger(__name__)
     handler = logging.StreamHandler(stream=sys.stdout)
     logger.setLevel(logging.DEBUG)
