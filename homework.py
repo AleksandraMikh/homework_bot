@@ -88,8 +88,8 @@ def get_api_answer(current_timestamp: int):
 
 
 def check_response(response: dict):
-    """Function checks type and content of API response
-    and returns list of all homeworks in case of success
+    """Function checks type and content of API response.
+    It returns list of all homeworks in case of success
     (even if this list is empty). Structure of expected response is
     {'current_timestamp':int, 'homeworks':[dict]}.
     Exceptions are raised if structure doesn't suit the expected.
@@ -111,7 +111,7 @@ def check_response(response: dict):
 
 
 def parse_status(homework: dict):
-    """Function retrievs status of homework from all information about it
+    """Function retrievs status of homework from all information about it.
     and creates string to be sent to user.
     Status and name are expected to be found in dictionary
     'homework' by keys 'status' and 'homework_name'.
@@ -129,7 +129,8 @@ def parse_status(homework: dict):
 
 
 def check_tokens():
-    """Function checks if file .env exists in root and includes three tokens:
+    """Function checks tokens created.
+    File .env must exist in root and it must include three tokens:
     PRACTICUM_TOKEN, TELEGRAM_TOKEN and TELEGRAM_CHAT_ID
     """
     if PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID:
