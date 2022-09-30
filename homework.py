@@ -126,7 +126,6 @@ def check_response(response: dict):
     {'current_timestamp':int, 'homeworks':[dict]}.
     Exceptions are raised if structure doesn't suit the expected.
     """
-
     if not isinstance(response, dict):
         raise TypeError(
             f"Response is expected to be 'dict' class "
@@ -155,7 +154,6 @@ def parse_status(homework: dict):
     'homework' by keys 'status' and 'homework_name' respectively.
     If thess keys are not in dictionary exception is raised.
     """
-
     homework_name = homework.get("homework_name")
     if not homework_name:
         raise KeyError('В домашней работе в ответе от API отсутствуют ключ'
@@ -183,7 +181,6 @@ def check_tokens():
 
 def main():
     """Main instruction."""
-
     logging.info("bot started")
 
     if not check_tokens():
