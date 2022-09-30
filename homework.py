@@ -107,7 +107,7 @@ def get_api_answer(current_timestamp: int):
         )
     else:
         logging.info(
-            f"Ответ API успешно получен")
+            "Ответ API успешно получен")
 
     try:
         logging.info("Начинаем преобразовывать ответ API к формату JSON")
