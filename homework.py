@@ -18,20 +18,6 @@ PRACTICUM_TOKEN = os.getenv('PRACTICUM_TOKEN')
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 
-# TELEGRAM_CHAT_ID = 17
-
-logging.basicConfig(
-    level=logging.INFO,
-    format=(
-        '%(asctime)s [%(levelname)s] - '
-        '(%(filename)s).%(funcName)s:%(lineno)d - %(message)s'
-    ),
-    handlers=[
-        logging.FileHandler(BASE_DIR + 'output.log'),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
-
 SHORTENING = 10
 
 
@@ -174,13 +160,25 @@ def check_tokens():
     File .env must exist in root and it must include three tokens:
     PRACTICUM_TOKEN, TELEGRAM_TOKEN and TELEGRAM_CHAT_ID
     """
-    if PRACTICUM_TOKEN and TELEGRAM_TOKEN and TELEGRAM_CHAT_ID:
+    if all([PRACTICUM_TOKEN, TELEGRAM_TOKEN, TELEGRAM_CHAT_ID]):
         return True
     return False
 
 
 def main():
     """Main instruction."""
+    logging.basicConfig(
+        level=logging.INFO,
+        format=(
+            '%(asctime)s [%(levelname)s] - '
+            '(%(filename)s).%(funcName)s:%(lineno)d - %(message)s'
+        ),
+        handlers=[
+            logging.FileHandler(BASE_DIR + 'output.log'),
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+
     logging.info("bot started")
 
     if not check_tokens():
